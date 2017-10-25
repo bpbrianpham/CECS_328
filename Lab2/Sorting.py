@@ -30,7 +30,6 @@ def quickSort(array):
         return (left + pivot + right)        
 
 
-
 def insertionSort(array):
     swap = 1
     while swap != 0:
