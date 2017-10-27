@@ -17,6 +17,13 @@ def quickSort(array):
         right = []
         medianList = [array[0], array[(int)(len(array)/2)], array[len(array)-1]]
         p = statistics.median(medianList)
+        if(p == array[0]): 
+            array.remove(array[0])
+        elif(p == array[(int)(len(array)/2)]): 
+            array.remove(array[(int)(len(array)/2)])
+        else:
+            array.remove(array[len(array) - 1])
+
         pivot = [p]
         
         for i in range(len(array)):

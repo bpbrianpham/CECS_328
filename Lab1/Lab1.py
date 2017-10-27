@@ -1,114 +1,70 @@
-#!python27
 import random
 import timeit
 import math
-from search import linearSearch, binarySearch
+from search import *
 
-##Part A
-n = int(input("Enter a non-negative integer: "))
+# Prompting user for Array size
+n = (int(input("\nEnter a positive number: ")))
 
-array = [None] * n
-linearTime = 0
-binaryTime = 0
-totalTime = 0
+# Variables for logging search time
+bothLinearTime = 0
+bothBinaryTime = 0
 
-for i in range (n):
-    l = random.randint(-1001, 1000)
+array = [0] * n
+
+for i in range(n):
+    l = random.randint(-1001 , 1000)
     array[i] = l
 
 array.sort()
 
-
+# Calculating the timer to find exisitng number
 for i in range(500):
-    k = random.randint(-1, n-1)
-    key = array[k]
+    temp = random.randint(-1 , n-1)
+    key = array[temp]
 
-    start = timeit.default_timer()
+    linearStartTime = timeit.default_timer()
     linearSearch(array, key)
-    end = timeit.default_timer()
-    linearTime += (end - start)
+    linearEndTime = timeit.default_timer()
+    bothLinearTime = bothLinearTime + (linearEndTime - linearStartTime)
 
-    start = timeit.default_timer()
+    binaryStartTime = timeit.default_timer()
     binarySearch(array, key)
-    end = timeit.default_timer()
-    binaryTime += (end - start)
+    binaryEndTime = timeit.default_timer()
+    bothBinaryTime = bothBinaryTime + (binaryEndTime - binaryStartTime)
 
-    totalTime += linearTime + binaryTime
 
-print ('******************** PART A **********************')
-print ('Linear Search Average Running Time: ' + str((linearTime / 500) * 1000) + ' microsecond(s)')
-print ('Binary Search Average Running Time: ' + str((binaryTime / 500) * 1000) + ' microsecond(s)')
-print ('Overall Search Average Running Time: ' + str((totalTime / 500) * 1000) + ' microsecond(s)')
 
-##Part B
-print ('\n******************** PART B **********************')
-print ('n = 100000 or 10^5\n')
-n = 100000
+ToMicrosecond = 1000000
+ToMilisecond = 1000
+ToSecond = 10000000
+# Printing out the loop time
+print ("\n********************* Part A *********************")
+print ("Average Linear Search Time: %.2f milisecond" %(round((bothLinearTime/500)*1000, 2)))
+print ("Average Binary Search Time: %.2f microsecond" %(round((bothBinaryTime/500)*ToMicrosecond, 2)))
 
-array = [None] * n
-linearTime = 0
-binaryTime = 0
-totalTime = 0
 
-for i in range (n):
-    l = random.randint(-1001, 1000)
-    array[i] = l
-
-array.sort()
-
+# Calculating the timer to find non-existing number
 key = 5000
 
 start = timeit.default_timer()
 linearSearch(array, key)
 end = timeit.default_timer()
-linearTime += (end - start)
+linearTime = end - start
+
+linearTime = (linearTime/n)
 
 start = timeit.default_timer()
 binarySearch(array, key)
 end = timeit.default_timer()
-binaryTime += (end - start)
+binaryTime = end - start
 
-totalTime += linearTime + binaryTime
+binaryTime = (binaryTime/(math.log(n,2)))
 
-print ('Linear Search Worst-Case Running Time: ' + str(linearTime * 1000) + ' microsecond(s)')
-print ('Binary Search Worst-Case Running Time: ' + str(binaryTime * 1000) + ' microsecond(s)')
-print ('Overall Search Worst-Case Running Time: ' + str(totalTime * 1000) + ' microsecond(s)')
-print ('')
-tenPowFiveBinTimePerStep = str((binaryTime / n) * 1000)
-print ('Linear Search Worst-Case Running Time Per Step (n = 10^5): ' + str((linearTime / n) * 1000) + ' microsecond(s)')
-print ('Binary Search Worst-Case Running Time Per Step (n = 10^5): ' + tenPowFiveBinTimePerStep + ' microsecond(s)')
+print ("\n\n********************* Part B *********************")
+# Printing out all Time for searches
+print ("One-Line Time of Linear Search for n = %d : %.2f microsecond(s)" %(n, round((linearTime)*ToMicrosecond, 2)))
+print ("One-Line Time of Binary Search for n = %d : %.2f microsecond(s)\n" %(n, round((binaryTime)*ToMicrosecond, 2)))
 
-print ('\n' + 'n = 10000000 or 10^7')
-print ('Prediction of linear Search Worst-Case Running Time (n = 10^7): ' 
-    + str(((linearTime / n) * 1000) * 10000000) + ' microsecond(s)')
-print ('Prediction of binary Search Worst-Case Running Time (n = 10^7): ' 
-    + tenPowFiveBinTimePerStep * 10000000) + ' microsecond(s)')
-n = 10000000
-
-array = [None] * n
-linearTime = 0
-binaryTime = 0
-totalTime = 0
-
-for i in range (n):
-    l = random.randint(-1001, 1000)
-    array[i] = l
-
-array.sort()
-
-key = 5000
-
-start = timeit.default_timer()
-linearSearch(array, key)
-end = timeit.default_timer()
-linearTime += (end - start)
-
-start = timeit.default_timer()
-binarySearch(array, key)
-end = timeit.default_timer()
-binaryTime += (end - start)
-
-totalTime += linearTime + binaryTime
-
-print ('Linear Search Worst-Case Running Time (n = 10^7): ' + str(linearTime * 1000) + ' microsecond(s)')
-print ('Binary Search Worst-Case Running Time (n = 10^7): ' + str(binaryTime * 1000) + ' microsecond(s)')
+print ("Estimate Time of Linear Search for n = 10^7 : %.2f second(s)" %(linearTime*ToSecond))
+print ("Estimate Time of Binary Search for n = 10^7 : %f second(s)\n\n" %(binaryTime*(math.log(n,2))))
