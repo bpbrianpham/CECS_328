@@ -4,17 +4,18 @@ import sys
 from Sorting import *
 
 
-n = int(input("\nPlease enter a positive number: "))
+n = (int(input("\nPlease enter a positive number: ")))
 
 array = [0] * n
-
-
 
 repitition = 100
 
 for j in range(repitition):
-    for i in range(0, n):
-        array[i] = random.randint(-7000 , 7001)
+    i = 1
+    while(i <= n):
+        a = random.randint(-7001 , 7000)
+        array[i] = a
+        i = i + 1
         
     sys.setrecursionlimit(10000)
     
