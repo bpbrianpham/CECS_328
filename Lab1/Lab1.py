@@ -4,7 +4,7 @@ import math
 from search import *
 
 # Prompting user for Array size
-n = (int(input("\nEnter a positive number: ")))
+n = (int(input("\nEnter an array size: ")))
 
 # Variables for logging search time
 bothLinearTime = 0
@@ -13,49 +13,53 @@ bothBinaryTime = 0
 array = [0] * n
 
 for i in range(n):
-    l = random.randint(-1001 , 1000)
-    array[i] = l
+    array[i] = random.randint(-1001 , 1000)
+    
 
 array.sort()
+ToMicrosecond = 1000000
+ToMilisecond = 1000
+ToSecond = 10000000
 
 # Calculating the timer to find exisitng number
+linearTime = 0
+binaryTime = 0
+
 for i in range(500):
     temp = random.randint(-1 , n-1)
     key = array[temp]
 
-    linearStartTime = timeit.default_timer()
+    start = timeit.default_timer()
     linearSearch(array, key)
-    linearEndTime = timeit.default_timer()
-    bothLinearTime = bothLinearTime + (linearEndTime - linearStartTime)
+    end = timeit.default_timer()
+    linearTime = linearTime + (end - start)
 
-    binaryStartTime = timeit.default_timer()
+    start = timeit.default_timer()
     binarySearch(array, key)
-    binaryEndTime = timeit.default_timer()
-    bothBinaryTime = bothBinaryTime + (binaryEndTime - binaryStartTime)
+    end = timeit.default_timer()
+    binaryTime = binaryTime + (end - start)
 
 
 
-ToMicrosecond = 1000000
-ToMilisecond = 1000
-ToSecond = 10000000
+
 # Printing out the loop time
 print ("\n********************* Part A *********************")
-print ("Average Linear Search Time: %.2f milisecond" %(round((bothLinearTime/500)*1000, 2)))
-print ("Average Binary Search Time: %.2f microsecond" %(round((bothBinaryTime/500)*ToMicrosecond, 2)))
+print ("Average Linear Search Time: " + str((linearTime/500) * ToMicrosecond) + " microseconds")
+print ("Average Binary Search Time: " + str((binaryTime/500) * ToMicrosecond) + " microseconds.")
 
 
 # Calculating the timer to find non-existing number
-key = 5000
+k = 5000
 
 start = timeit.default_timer()
-linearSearch(array, key)
+linearSearch(array, k)
 end = timeit.default_timer()
 linearTime = end - start
 
 linearTime = (linearTime/n)
 
 start = timeit.default_timer()
-binarySearch(array, key)
+binarySearch(array, k)
 end = timeit.default_timer()
 binaryTime = end - start
 
@@ -63,8 +67,8 @@ binaryTime = (binaryTime/(math.log(n,2)))
 
 print ("\n\n********************* Part B *********************")
 # Printing out all Time for searches
-print ("One-Line Time of Linear Search for n = %d : %.2f microsecond(s)" %(n, round((linearTime)*ToMicrosecond, 2)))
-print ("One-Line Time of Binary Search for n = %d : %.2f microsecond(s)\n" %(n, round((binaryTime)*ToMicrosecond, 2)))
+print ("One instruction time of Linear Search for n = " + str(n) + ": " + str((linearTime) * ToMicrosecond) + " microseconds.")
+print ("One instruction time of Binary Search for n = " + str(n) + ": " + str((binaryTime) * ToMicrosecond) + " microseconds.")
 
-print ("Estimate Time of Linear Search for n = 10^7 : %.2f second(s)" %(linearTime*ToSecond))
-print ("Estimate Time of Binary Search for n = 10^7 : %f second(s)\n\n" %(binaryTime*(math.log(n,2))))
+print ("Estimate Time of Linear Search for n = 10^7 : " + str(linearTime * ToSecond) + " seconds")
+print ("Estimate Time of Binary Search for n = 10^7 : " + str(binaryTime*(math.log(n,2))) + " seconds ")

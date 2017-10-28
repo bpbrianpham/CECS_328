@@ -22,13 +22,13 @@ for j in range(repitition):
     start = timeit.default_timer()
     array1 = insertionSort(array)
     end = timeit.default_timer()
-    insertTimer = end - start
+    insertTimer = insertTimer + (end - start)
 
 
     start = timeit.default_timer()
     array2 = quickSort(array)
     end = timeit.default_timer()
-    quickTimer = end - start
+    quickTimer = quickTimer + (end - start)
 
 #print ("\nInsertion Sort: %s \n" %array)
 print ("Insertion Sort takes " + str(insertTimer / repitition) + " seconds\n")
