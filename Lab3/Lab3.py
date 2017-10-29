@@ -7,7 +7,7 @@ n = (int(input("\nEnter a positive number: ")))
 array = [0] * n
 
 for i in range(n):
-    array[i] = random.randint(-100, 101)
+    array[i] = random.randint(-100, 100)
 
 print(array)
 
