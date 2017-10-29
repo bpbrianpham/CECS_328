@@ -10,12 +10,13 @@ array = [0] * n
 
 repitition = 100
 
+insertTimer = 0
+quickTimer = 0
+
 for j in range(repitition):
-    i = 1
-    while(i <= n):
-        a = random.randint(-7001 , 7000)
-        array[i] = a
-        i = i + 1
+    for i in range(len(array)):
+        array[i] = random.randint(-7001, 7000)
+
         
     sys.setrecursionlimit(10000)
     
@@ -23,7 +24,7 @@ for j in range(repitition):
     array1 = insertionSort(array)
     end = timeit.default_timer()
     insertTimer = insertTimer + (end - start)
-
+    
 
     start = timeit.default_timer()
     array2 = quickSort(array)
@@ -31,8 +32,8 @@ for j in range(repitition):
     quickTimer = quickTimer + (end - start)
 
 #print ("\nInsertion Sort: %s \n" %array)
-print ("Insertion Sort takes " + str(insertTimer / repitition) + " seconds\n")
+print ("Insertion Sort takes " + str(insertTimer / repitition) + " seconds on average\n")
 
 #print ("Quick Sort: %s \n" %array)
-print ("Quick Sort takes " + str(quickTimer / repitition) + " seconds\n")
+print ("Quick Sort takes " + str(quickTimer / repitition) + " seconds on average\n")
 
