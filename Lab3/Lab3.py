@@ -4,6 +4,9 @@ from QuickSearch import quickSearch
 
 n = (int(input("\nEnter a positive number: ")))
 
+while (n < 0):
+    n = (int(input("\nEnter a positive number: ")))
+
 array = [0] * n
 
 for i in range(n):
