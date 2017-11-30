@@ -1,11 +1,12 @@
 import random
 import timeit
+import math
 import sys
 from Sorting import *
 
 
 n = (int(input("\nPlease enter a positive number: ")))
-
+print()
 array = [0] * n
 
 repitition = 100
@@ -31,9 +32,11 @@ for j in range(repitition):
     end = timeit.default_timer()
     quickTimer = quickTimer + (end - start)
 
-#print ("\nInsertion Sort: %s \n" %array)
-print ("Insertion Sort takes " + str(insertTimer / repitition) + " seconds on average\n")
+averageInsertRunTime = insertTimer / repitition
+averageQuickRunTime = quickTimer / repitition
+print ("Insertion Sort takes " + str(averageInsertRunTime) + " seconds on average\n")
 
-#print ("Quick Sort: %s \n" %array)
-print ("Quick Sort takes " + str(quickTimer / repitition) + " seconds on average\n")
+print ("Quick Sort takes " + str(averageQuickRunTime) + " seconds on average\n")
+
+print ("This computer runs: " + str(averageInsertRunTime / math.pow(n, 2)) + " instructions per seconds\n")
 
