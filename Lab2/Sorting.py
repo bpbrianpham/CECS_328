@@ -34,17 +34,15 @@ def quickSort(array):
         
         left = quickSort(left)
         right = quickSort(right)
-        return (left + pivot + right)        
+        return (left + pivot + right)    
+
 
 
 def insertionSort(array):
-    for i in range (1, len(array)):
-        temp = array[i]
-        spot = i
-
-        while (array[spot - 1] > temp and spot > 0):
-            array[spot] = array[spot - 1]
-            spot = spot - 1
-    
-        array[spot] = temp
+    for i in range (len(array)):
+        for j in range (i, -1, -1):
+            if(array[j] > array[i]):
+                temp = array[j]
+                array[j] = array[i]
+                array[i] = temp
     return array
