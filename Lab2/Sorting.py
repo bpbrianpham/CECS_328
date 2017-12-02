@@ -42,7 +42,5 @@ def insertionSort(array):
     for i in range (len(array)):
         for j in range (i, -1, -1):
             if(array[j] > array[i]):
-                temp = array[j]
-                array[j] = array[i]
-                array[i] = temp
+                array[j], array[i] = array[i], array[j]
     return array

@@ -38,5 +38,5 @@ print ("Insertion Sort takes " + str(averageInsertRunTime) + " seconds on averag
 
 print ("Quick Sort takes " + str(averageQuickRunTime) + " seconds on average\n")
 
-print ("This computer runs: " + str(averageInsertRunTime / math.pow(n, 2)) + " instructions per seconds\n")
+print ("This computer runs: " + str(math.pow(n, 2) / averageInsertRunTime) + " instructions per seconds\n")
 
