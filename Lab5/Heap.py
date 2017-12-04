@@ -1,27 +1,27 @@
-def buildMaxHeap(a):
-    n = len(a)
-    for i in range (n, -1, -1):
-        maxHeapify(a, i)
+def buildMaxHeap(array):
+    for i in range(len(array)-1, -1, -1):
+        maxHeapify(array, i)
+
+
+def maxHeapify(array, root):
+    mInd = root
+    leftChild = (2*root) + 1
+    rightChild = (2*root) + 2
+
+    if leftChild <= len(array)-1:
+        if array[leftChild] > array[mInd]:
+            mInd = leftChild
+    if rightChild <= len(array)-1:
+        if array[rightChild] > array[mInd]:
+            mInd = rightChild
+    if mInd != root:
+        array[mInd], array[root] = array[root], array[mInd]
     
 
-def maxHeapify(a, i):
-    if a is not None:
-        root = i
-        left = (2 * i)
-        right = (2 * i) + 1
-
-        if (left <= len(a)): 
-            if (a[i] < a[left]): root = left
-        
-        if (right <= len(a)):
-            if (a[i] < a[right]): root = right
-        
-        if (root != i):
-            a[i],a[root] = a[root],a[i]
-            maxHeapify(a, root)
-
-    
-
-def heapSort(a):
-    buildMaxHeap(a)
-    
+def heapSort(array):
+    tempArr = []
+    for i in range(len(array)):
+        buildMaxHeap(array)
+        array[0], array[len(array)-1] = array[len(array)-1], array[0]
+        tempArr.append(array.pop())
+    return tempArr
