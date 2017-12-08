@@ -25,6 +25,7 @@ quickTimer = 0
 heapTimer = 0
 selectTimer = 0
 
+print(c)
 sys.setrecursionlimit(10000)
 
 startQuick = timeit.default_timer()
@@ -40,7 +41,7 @@ selectTimer = selectTimer + (endSelect - startSelect)
 print (str(selectTimer) + " seconds of selection sorting.")
 
 startHeap = timeit.default_timer()
-heapSort(c)
+print(heapSort(c))
 endHeap = timeit.default_timer()
 heapTimer = heapTimer + (endHeap - startHeap)
 print (str(heapTimer) + " seconds of heap sorting.")
