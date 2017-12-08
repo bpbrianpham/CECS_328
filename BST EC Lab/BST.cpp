@@ -56,13 +56,7 @@ void  BST<T>::destroyTree(Node<T>* &p)
 	}
 }
 
-/***************************************************************
-
-	Implement your functions below this line.
-
-***************************************************************/
-
-//// Definition function insert (non-recursive)
+// Definition function insert (non-recursive)
 //template <class T>
 //void BST<T>::insert(const T& elem)
 //{
